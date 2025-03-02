@@ -19,8 +19,10 @@ public class ToDoService {
         this.toDoRepository.save(toDo);
         return this.list();
     }
-    public List<ToDoEntity> update(Long id){
-        this.toDoRepository.save(this.getToDo(id));
+    public List<ToDoEntity> update(ToDoEntity toDo){
+        String name = toDo.getName();
+        this.getToDo(toDo.getId());
+        this.toDoRepository.save(toDo);
         return this.list();
     }
 
@@ -28,7 +30,7 @@ public class ToDoService {
         Sort sort = Sort.by("priority").descending().and(Sort.by("name").ascending());
        return this.toDoRepository.findAll(sort);
     }
-    public List<ToDoEntity> remove(Long id){
+    public List<ToDoEntity> delete(Long id){
         this.toDoRepository.delete(this.getToDo(id));
         return this.list();
     }
