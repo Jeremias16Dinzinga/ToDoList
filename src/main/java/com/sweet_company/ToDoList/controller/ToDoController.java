@@ -2,6 +2,7 @@ package com.sweet_company.ToDoList.controller;
 
 import com.sweet_company.ToDoList.entity.ToDoEntity;
 import com.sweet_company.ToDoList.services.ToDoService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,11 +17,11 @@ public class ToDoController {
     }
 
     @PostMapping
-    public List<ToDoEntity> create(@RequestBody ToDoEntity toDo){
+    public List<ToDoEntity> create(@Valid @RequestBody ToDoEntity toDo){
         return this.toDoService.create(toDo);
     }
     @PutMapping
-    public List<ToDoEntity> update(@RequestBody ToDoEntity toDo){
+    public List<ToDoEntity> update(@Valid @RequestBody ToDoEntity toDo){
         return this.toDoService.update(toDo);
     }
     @DeleteMapping("/{id}")
