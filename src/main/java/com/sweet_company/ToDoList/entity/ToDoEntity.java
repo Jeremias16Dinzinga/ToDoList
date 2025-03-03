@@ -19,7 +19,18 @@ public class ToDoEntity {
     private boolean done;
     private Integer priority;
 
+    public ToDoEntity() {
+    }
+
     public ToDoEntity(String name, String description, boolean done, Integer priority) {
+        this.name = name;
+        this.description = description;
+        this.done = done;
+        this.priority = priority;
+    }
+
+    public ToDoEntity(long id, String name, String description, boolean done, Integer priority) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.done = done;

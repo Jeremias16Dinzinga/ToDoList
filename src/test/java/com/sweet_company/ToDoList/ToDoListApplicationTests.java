@@ -47,4 +47,27 @@ class ToDoListApplicationTests {
 
 	}
 
+	@Test
+	@ExtendWith(MockitoExtension.class)
+	void testToDoUpdateSuccess(){
+		webTestClient
+				.put().uri("/toDo")
+				.bodyValue(
+						new ToDoEntity(1,"tarefa2","Boa tarefa para semana",false,2)
+				)
+				.exchange()
+				.expectStatus().isOk();
+	}
+
+	@Test
+	@ExtendWith(MockitoExtension.class)
+	void testToDoUpdateFailed(){
+		webTestClient
+				.put().uri("/toDo")
+				.bodyValue(
+						new ToDoEntity(1,"","",false,2)
+				).exchange()
+				.expectStatus().isBadRequest();
+	}
+
 }
