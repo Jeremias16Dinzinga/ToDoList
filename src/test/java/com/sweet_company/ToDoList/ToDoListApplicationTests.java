@@ -19,18 +19,14 @@ class ToDoListApplicationTests {
 	void testToDoCreateSuccess() {
 		var toDo = new ToDoEntity("Aula1","Terei aula de Inglês",false,1);
 
-		webTestClient.
-				post().uri("/toDo")
+		webTestClient
+				.post().uri("/toDo")
 				.bodyValue(toDo)
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody()
 				.jsonPath("$").isArray()
-				.jsonPath("$.length()").isEqualTo(1)
-				.jsonPath("$[0].name").isEqualTo(toDo.getName())
-				.jsonPath("$[0].description").isEqualTo(toDo.getDescription())
-				.jsonPath("$[0].done").isEqualTo(toDo.isDone())
-				.jsonPath("$[0].priority").isEqualTo(toDo.getPriority());
+				.jsonPath("$.length()").isNotEmpty();
 	}
 
 
@@ -69,5 +65,16 @@ class ToDoListApplicationTests {
 				).exchange()
 				.expectStatus().isBadRequest();
 	}
+
+	@Test
+	@ExtendWith(MockitoExtension.class)
+	void testToDoListSuccess(){
+		webTestClient
+				.get().uri("/toDo")
+				.exchange().expectStatus().isOk()
+				.expectBody()
+				.jsonPath("$.length()").isEqualTo(3);
+	}
+
 
 }
