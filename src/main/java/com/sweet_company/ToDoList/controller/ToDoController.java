@@ -24,6 +24,10 @@ public class ToDoController {
     public List<ToDoEntity> update(@Valid @RequestBody ToDoEntity toDo){
         return this.toDoService.update(toDo);
     }
+    @PutMapping("/{id}")
+    public List<ToDoEntity> completeTask(@PathVariable("id") Long id){
+        return this.toDoService.complete(id);
+    }
     @DeleteMapping("/{id}")
     public List<ToDoEntity> delete(@PathVariable("id") Long id){
         return this.toDoService.delete(id);

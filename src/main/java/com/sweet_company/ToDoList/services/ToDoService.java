@@ -26,6 +26,13 @@ public class ToDoService {
         return this.list();
     }
 
+    public List<ToDoEntity> complete(Long id){
+        ToDoEntity toDo = this.getToDo(id);
+        toDo.setDone(true);
+        this.update(toDo);
+        return this.list();
+    }
+
     public List<ToDoEntity> list(){
         Sort sort = Sort.by("priority").descending().and(Sort.by("name").ascending());
        return this.toDoRepository.findAll(sort);

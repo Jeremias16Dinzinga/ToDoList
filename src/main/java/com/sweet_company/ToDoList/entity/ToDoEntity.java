@@ -56,4 +56,8 @@ public class ToDoEntity {
     public Integer getPriority() {
         return priority;
     }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 }
